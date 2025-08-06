@@ -1,0 +1,12 @@
+1. SELECT Artist, COUNT(Album) AS total_albums FROM `ALBUM SALES` GROUP BY Artist;
+2. SELECT Artist, SUM(`2022 Sales`) AS total_sales FROM `ALBUM SALES` GROUP BY Artist;
+3. SELECT Artist, SUM(`2022 Sales`) AS total_sales FROM `ALBUM SALES`
+GROUP BY Artist ORDER BY total_sales DESC LIMIT 1;
+4. SELECT *
+FROM (
+    SELECT *, 
+           ROW_NUMBER() OVER (PARTITION BY `Date Release` ORDER BY `2022 Sales` DESC) AS rank
+    FROM albums
+) ranked
+WHERE rank <= 10;
+5. SELECT Album FROM `ALBUM SALES` WHERE Artist = 'Artist Name';
